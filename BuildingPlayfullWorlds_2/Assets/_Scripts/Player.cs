@@ -36,6 +36,19 @@ public class Player : MonoBehaviour
             {
                 Jump();
             }
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                Walk(1);
+            }
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                Walk(-1);
+            }
+            float horizontal = Input.GetAxis("Horizontal");
+
+            Vector3 velocity = (transform.right * horizontal) * MovementSpeed * Time.deltaTime;
+            velocity.y = rBody.velocity.y;
+            rBody.velocity = velocity;
         }
         else if(ThisPlayer == PlayerType.Player2)
         {
@@ -46,11 +59,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Walk(int side)
+    {
+        //transform.position += new Vector3(side * MovementSpeed * Time.deltaTime, transform.position.y ,transform.position.z);
+    }
+
     private void Jump()
     {
         if (jumps > 0)
         {
-            rBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            rBody.AddForce(Vector3.up * JumpForce, ForceMode.VelocityChange);
             grounded = false;
             jumps = jumps - 1;
         }

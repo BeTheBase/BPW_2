@@ -11,11 +11,17 @@ public class Jump : AbstractBehavior
 
     protected float lastJumpTime = 0;
     protected int jumpsRemaining = 0;
+    private int tmpJumpCount;
 
-    private void Start()
+    public override void Start()
     {
+        base.Awake();
+
+        tmpJumpCount = JumpCount;
+
         if (JumpEffect == null)
             JumpEffect = transform.GetChild(3).gameObject;
+
     }
 
     void FixedUpdate ()
@@ -27,10 +33,10 @@ public class Jump : AbstractBehavior
         {
             JumpEffect.SetActive(false);
 
-            if (PlayerColor.playerColors != ColorS.White)
+            if (colorManager.playerColors != ColorS.White)
                 JumpCount = 1;
             else
-                JumpCount = 2;
+                JumpCount = tmpJumpCount;
 
             if (canJump && holdTime < .1f)
             {
@@ -54,7 +60,7 @@ public class Jump : AbstractBehavior
 
     public virtual void OnJump()
     {
-        if (PlayerColor.playerColors == ColorS.White)
+        if (colorManager.playerColors == ColorS.White)
             JumpEffect.SetActive(true);
         else
             JumpEffect.SetActive(false);

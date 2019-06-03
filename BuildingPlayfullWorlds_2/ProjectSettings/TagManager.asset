@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Child
+  - CylinderHand
+  - BlackWall
   layers:
   - Default
   - TransparentFX

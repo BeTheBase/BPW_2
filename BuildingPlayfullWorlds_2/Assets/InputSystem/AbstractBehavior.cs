@@ -11,6 +11,7 @@ public abstract class AbstractBehavior : MonoBehaviour
     protected Rigidbody2D body2d;
     protected CollisionState collisionState;
     protected AudioManager AManager;
+    public static ColorManager colorManager;
 
     protected virtual void Awake()
     {
@@ -18,6 +19,11 @@ public abstract class AbstractBehavior : MonoBehaviour
         body2d = GetComponent<Rigidbody2D>();
         collisionState = GetComponent<CollisionState>();
         AManager = GetComponent<AudioManager>();
+    }
+
+    public virtual void Start()
+    {
+        colorManager = ColorManager.Instance;
     }
 
     protected virtual void ToggleScripts(bool value)

@@ -9,7 +9,6 @@ public class SpawnEffect : MonoBehaviour {
     public AnimationCurve FadeIn;
     public AnimationCurve FadeOut;
 
-    [HideInInspector]
     public ParticleSystem ps;
     [HideInInspector]
     public bool SetTimer = false;
@@ -23,7 +22,7 @@ public class SpawnEffect : MonoBehaviour {
     {
         shaderProperty = Shader.PropertyToID("_cutoff");
         _renderer = GetComponent<Renderer>();
-        ps = GetComponentInChildren <ParticleSystem>();
+        //ps = GetComponentInChildren <ParticleSystem>();
 
         var main = ps.main;
         main.duration = SpawnEffectTime;

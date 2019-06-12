@@ -134,8 +134,8 @@ public class PlayerAttack : AbstractBehavior
         {
             if (attackReady)
             {
-                GameObject ShockWave = objectPooler.SpawnFromPool(PlayerHitEffect, transform.position, transform.rotation);
                 AttackPlayer();
+                GameObject ShockWave = objectPooler.SpawnFromPool(PlayerHitEffect, transform.position, transform.rotation);
             }
         }
     }
@@ -168,7 +168,6 @@ public class PlayerAttack : AbstractBehavior
         if (collision.gameObject.tag == "BlackWall")
         {
             collision.gameObject.GetComponent<CircleCollider2D>().enabled = true;
-
         }
     }
 

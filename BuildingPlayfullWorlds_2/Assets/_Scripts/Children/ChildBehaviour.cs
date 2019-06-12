@@ -32,6 +32,7 @@ public class ChildBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GetComponent<Collider2D>().enabled = false;
             followPlayer = true;
             animator.SetBool("ChildFollow", true);
             if (!GameManager.Children.ContainsKey(gameObject.name))

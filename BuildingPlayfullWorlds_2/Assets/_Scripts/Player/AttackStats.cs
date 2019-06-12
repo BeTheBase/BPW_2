@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class AttackStats : MonoBehaviour
+public class AttackStats 
 {
     [SerializeField]
     public float Damage;

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -82,6 +84,28 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
+--- !u!45 &534669906
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 8b7dd0809c7c6498789fa32a61eaa6cb, type: 2}
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 67873639b7841884f9f9c17ee920a26f, type: 2}
 --- !u!1 &1108328194
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108328194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.47, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3573760817199451150}
@@ -135,7 +159,6 @@ GameObject:
   - component: {fileID: 6712287017670269656}
   - component: {fileID: 1518144460}
   - component: {fileID: 1518144461}
-  - component: {fileID: 1518144462}
   - component: {fileID: 1518144463}
   m_Layer: 0
   m_Name: Player
@@ -291,10 +314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputButtons: 05000000
   DissableScripts: []
-  JumpEffect: {fileID: 0}
+  JumpEffect: {fileID: 5947241298877565880}
   JumpSpeed: 10
   JumpDelay: 0.1
-  JumpCount: 2
+  JumpCount: 3
 --- !u!114 &7795579217221633237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +335,7 @@ MonoBehaviour:
   - {fileID: 6296251963556734207}
   - {fileID: 8995245750327325393}
   JumpVelocity: {x: 0.5, y: 2}
-  JumpingOffWall: 0
+  JumpingOffWall: 1
   ResetDelay: 0.2
 --- !u!114 &6296251963556734207
 MonoBehaviour:
@@ -416,23 +439,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &1518144462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3573760817199451144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29afa7af7633b204483c3f984289bb3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerMaterials:
-  - {fileID: 2100000, guid: e61ba21941b6d25448c1a8ec10274c2c, type: 2}
-  - {fileID: 2100000, guid: 6629058c8ccf5574a9538d5cd00780dc, type: 2}
-  - {fileID: 2100000, guid: c2ce2c8d167907b43ac82db06894a853, type: 2}
-  - {fileID: 2100000, guid: f8717ca9137b3de45becf5bd781ec272, type: 2}
 --- !u!114 &1518144463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,10 +454,13 @@ MonoBehaviour:
   InputButtons: 
   DissableScripts: []
   AttackDamage: 3
-  AttackRange: 3
+  AttackRange: 6
   AttackSpeed: 1
+  ProjectileSpeed: 15
   Target: {fileID: 0}
   FirePoint: {fileID: 1108328195}
+  EnergyAttackEffect: EnergyExplosion
+  PlayerHitEffect: Shockwave
 --- !u!1 &8832793161221371906
 GameObject:
   m_ObjectHideFlags: 0
@@ -9895,6 +9904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundFog
       objectReference: {fileID: 0}
+    - target: {fileID: 1269120730060968, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17
@@ -9973,6 +9986,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a365141225c22e49a7bb976869b22a8, type: 3}
+--- !u!1 &5947241298877565880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269120730060968, guid: 1a365141225c22e49a7bb976869b22a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5948228377158325008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5945536303760595662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4103333903944158, guid: 1a365141225c22e49a7bb976869b22a8,

@@ -9,6 +9,7 @@ TagManager:
   - Child
   - CylinderHand
   - BlackWall
+  - EnemySpots
   layers:
   - Default
   - TransparentFX

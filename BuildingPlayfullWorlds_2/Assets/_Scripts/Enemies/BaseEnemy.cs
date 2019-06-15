@@ -23,7 +23,7 @@ public class BaseEnemy : MonoBehaviour
 
     public GameObject ChildGameObject;
 
-    private ObjectPooler objectPooler;
+    public ObjectPooler objectPooler;
 
     public bool IsSlowed;
 
@@ -36,31 +36,34 @@ public class BaseEnemy : MonoBehaviour
         NextPoint = 0;
         Health = MaxHealth;
         Shield = MaxShield;
+
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        Vector3 nextPointPosition = Vector3.zero;
 
-        if (NextPoint < EnemySpots.Count)
-        {
-            //Move from point to point
-            nextPointPosition = new Vector3(EnemySpots[NextPoint].position.x, transform.position.y, EnemySpots[NextPoint].position.z);
+            Vector3 nextPointPosition = Vector3.zero;
 
-            if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(EnemySpots[NextPoint].position.x, 0, EnemySpots[NextPoint].position.z)) < 0.1f)
+            if (NextPoint < EnemySpots.Count)
             {
-                NextPoint++;
-            }
+                //Move from point to point
+                nextPointPosition = new Vector3(EnemySpots[NextPoint].position.x, transform.position.y, EnemySpots[NextPoint].position.z);
 
-            transform.position = Vector3.MoveTowards(transform.position, nextPointPosition, Speed * Time.deltaTime);
-         }
-        else
-        {
-            NextPoint = 0;
-            nextPointPosition = new Vector3(EnemySpots[NextPoint].position.x, transform.position.y, EnemySpots[NextPoint].position.z);
-            transform.position = Vector3.MoveTowards(transform.position, nextPointPosition, Speed * Time.deltaTime);
-        }
+                if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(EnemySpots[NextPoint].position.x, 0, EnemySpots[NextPoint].position.z)) < 0.1f)
+                {
+                    NextPoint++;
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, nextPointPosition, Speed * Time.deltaTime);
+            }
+            else
+            {
+                NextPoint = 0;
+                nextPointPosition = new Vector3(EnemySpots[NextPoint].position.x, transform.position.y, EnemySpots[NextPoint].position.z);
+                transform.position = Vector3.MoveTowards(transform.position, nextPointPosition, Speed * Time.deltaTime);
+            }
+        
 
         
 
@@ -82,6 +85,8 @@ public class BaseEnemy : MonoBehaviour
     {
         //objectPooler.SpawnFromPool("Blood", transform.position, Quaternion.identity);
         //gameManager.Gold += GoldGiven;
+        if (GameObject.Find("BossEnemy"))
+            BossManager.Instance.BossChildren.Remove(gameObject);
         SpawnEffect SpawnAndDeactivateScript = GetComponent<SpawnEffect>();
         if (ChildGameObject == null) ChildGameObject = transform.GetChild(1).gameObject;
         SpawnEffect SpawnAndDeactivateScriptChild = ChildGameObject.GetComponent<SpawnEffect>();

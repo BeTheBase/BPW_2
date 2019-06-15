@@ -9597,7 +9597,7 @@ MonoBehaviour:
   Speed: 5
   Impact: 1
   Target: {fileID: 0}
-  DeactivationTime: 2
+  DeactivationTime: 1
   EffectTime: 1
   HitEffect: {fileID: 633926082460816763}
   ObjectPOoler: {fileID: 0}

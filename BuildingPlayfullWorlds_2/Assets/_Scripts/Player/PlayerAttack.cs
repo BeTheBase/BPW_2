@@ -31,7 +31,7 @@ public class PlayerAttack : AbstractBehavior
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) && colorManager.playerColors == ColorS.Blue)
+        if(Input.GetMouseButtonDown(0) && colorManager.playerColors == ColorS.Blue || Input.GetKeyDown(KeyCode.F) && colorManager.playerColors == ColorS.Blue)
         {
             if (ReadyToFire)
             {
@@ -138,6 +138,7 @@ public class PlayerAttack : AbstractBehavior
                 GameObject ShockWave = objectPooler.SpawnFromPool(PlayerHitEffect, transform.position, transform.rotation);
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -148,6 +149,12 @@ public class PlayerAttack : AbstractBehavior
             {
                 collision.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             }
+        }
+
+        if(collision.gameObject.tag == "Heal")
+        {
+            gameManager.SetLives(1, false);
+            collision.gameObject.SetActive(false);
         }
     }
 

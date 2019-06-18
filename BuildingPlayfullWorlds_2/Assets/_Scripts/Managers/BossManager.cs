@@ -44,11 +44,6 @@ public class BossManager : MonoBehaviour
         }
     }
 
-
-    private void Start()
-    {
-    }
-
     public void UpdateBossChildren(GameObject child)
     {
         BossChildren.Add(child);

@@ -52,7 +52,12 @@ public class ForwardProjectile : BaseProjectile
 
         Target.GetComponent<BaseEnemy>().TakeDamage(Damage);
 
-        StartCoroutine(Deactivate(BloodHit, EffectTime));
+        
+        StartCoroutine(Deactivate(BloodHit, 0.1f));
+
+
+
+
 
     }
 
@@ -61,6 +66,5 @@ public class ForwardProjectile : BaseProjectile
         yield return new WaitForSeconds(time);
         activeObject.SetActive(false);
         gameObject.SetActive(false);
-
     }
 }

@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Level 1 - The Dark World.unity
     guid: 2d7a5a0c80dc0e4439c41dbab6d42ebc
+  - enabled: 1
+    path: Assets/_Scenes/Level 2 - The Light World.unity
+    guid: 2a0e6f78d9abbc74dbb8f10cecd8f516
+  - enabled: 1
+    path: Assets/_Scenes/ArenaArea.unity
+    guid: 21f046b6ee8a97a4491b539b234ec3c3
   m_configObjects: {}

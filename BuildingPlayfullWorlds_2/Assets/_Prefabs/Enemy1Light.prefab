@@ -9627,6 +9627,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ChildGameObject: {fileID: 0}
+  DeathEffect: {fileID: 0}
+  objectPooler: {fileID: 0}
   IsSlowed: 0
   HasShield: 0
 --- !u!70 &447863094
@@ -33288,6 +33290,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ChildGameObject: {fileID: 0}
+  DeathEffect: {fileID: 0}
+  objectPooler: {fileID: 0}
   IsSlowed: 0
   HasShield: 0
 --- !u!70 &1741422584
@@ -33331,6 +33335,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ChildGameObject: {fileID: 0}
+  DeathEffect: {fileID: 119968, guid: e73000b12fb76244cbffd6abbf8bb6e4, type: 3}
+  objectPooler: {fileID: 0}
   IsSlowed: 0
   HasShield: 0
   AttackCylinder: {fileID: 447863092}

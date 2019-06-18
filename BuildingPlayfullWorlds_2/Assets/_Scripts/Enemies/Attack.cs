@@ -27,9 +27,10 @@ public class Attack : MonoBehaviour
         if (Target == null)
             return;
 
-        if(shootDirection != null && shootDirection != Vector3.zero)
+        if (shootDirection != null && shootDirection != Vector3.zero)
             transform.position = Vector3.Lerp(transform.position, shootDirection, Speed * Time.deltaTime);
-
+            //transform.position = Vector3.MoveTowards(transform.position, shootDirection, 1f);
+             
     }
 
     public void SetTargetPosition(Transform target)

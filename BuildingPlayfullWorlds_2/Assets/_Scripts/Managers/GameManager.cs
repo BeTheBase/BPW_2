@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
 
+    public GameObject DeathEffect;
+
+    public float TimeToDie = 3f;
+
     public Image[] Lives;
 
     public List<AttackStats> Attacks;
@@ -39,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Children.Count >= 4)
-            SceneManager.LoadSceneAsync(GameWonBuildIndex);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex +1);
     }
 
     public void SetLives(int amount, bool remove)
@@ -68,6 +72,14 @@ public class GameManager : MonoBehaviour
 
     public void KillPlayer()
     {
+        GameObject deathEffect = Instantiate(DeathEffect, Player.transform.position, DeathEffect.transform.rotation);
+        StartCoroutine(Death(TimeToDie));
+    }
+
+    private IEnumerator Death(float time)
+    {
+        yield return new WaitForSeconds(time);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
     }
 }

@@ -23,6 +23,8 @@ public class BaseEnemy : MonoBehaviour
 
     public GameObject ChildGameObject;
 
+    public GameObject DeathEffect;
+
     public ObjectPooler objectPooler;
 
     public bool IsSlowed;
@@ -30,13 +32,16 @@ public class BaseEnemy : MonoBehaviour
     public bool HasShield;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         objectPooler = ObjectPooler.Instance;
         NextPoint = 0;
         Health = MaxHealth;
         Shield = MaxShield;
-
+        foreach(Transform spot in EnemySpots)
+        {
+            spot.parent = null;
+        }
     }
 
     // Update is called once per frame
@@ -85,6 +90,9 @@ public class BaseEnemy : MonoBehaviour
     {
         //objectPooler.SpawnFromPool("Blood", transform.position, Quaternion.identity);
         //gameManager.Gold += GoldGiven;
+
+        GameObject deathEffect = objectPooler.SpawnFromPool(DeathEffect.name, transform.position, DeathEffect.transform.rotation);
+        
         if (GameObject.Find("BossEnemy"))
             BossManager.Instance.BossChildren.Remove(gameObject);
         SpawnEffect SpawnAndDeactivateScript = GetComponent<SpawnEffect>();

@@ -11,8 +11,10 @@ public class CylinderEnemy : BaseEnemy
 
     private bool attackReady = true;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
+        //objectPooler = ObjectPooler.Instance;
         gameManager = GameManager.Instance;
 
         if (Player == null)
@@ -26,5 +28,6 @@ public class CylinderEnemy : BaseEnemy
         base.Update();
 
         AttackCylinder.transform.RotateAround(transform.position, Vector3.up, RotateSpeed * Time.deltaTime);
+
     }
 }

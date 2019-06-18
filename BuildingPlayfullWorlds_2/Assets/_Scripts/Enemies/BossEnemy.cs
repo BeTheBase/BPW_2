@@ -47,8 +47,11 @@ public class BossEnemy : BaseEnemy
     {
         HealthBar.value = Health;
         ShieldBar.value = Shield;
-
+        
         FirePoint.transform.LookAt(Player);
+
+        if (Shield <= 0 && basicAttackReady && !callHeavy)
+            heavyAttackReady = true;
 
         if (basicAttackReady)
             StartCoroutine(WaitAndAttack());
@@ -77,7 +80,7 @@ public class BossEnemy : BaseEnemy
 
     private void HeavyAttack(int index)
     {
-        GameObject effect = objectPooler.SpawnFromPool(AttackEffects[index].name, FirePoint.transform.position, Quaternion.identity);
+        GameObject effect = objectPooler.SpawnFromPool(AttackEffects[index].name, FirePoint.transform.position.ToZeroZ(), Quaternion.identity);
         Attack attack = effect.GetComponent<Attack>();
         if (attack != null)
         {
@@ -85,6 +88,7 @@ public class BossEnemy : BaseEnemy
             attack.Speed = Attacks[index].AttackSpeed;
             attack.Impact = Attacks[index].Damage;
         }
+        onAttackCallBack -= HeavyAttack;
     }
 
     private IEnumerator WaitAndAttack()
@@ -116,8 +120,9 @@ public class BossEnemy : BaseEnemy
 
         for(int index = 0; index <= amount; index++)
         {
-            GameObject mate = objectPooler.SpawnFromPool(friend.name, SpawnPoints[index].position, Quaternion.identity);
-            mate.transform.parent = SpawnPoints[index];
+            int randomSpot = Random.Range(0, amount);
+            GameObject mate = objectPooler.SpawnFromPool(friend.name, SpawnPoints[randomSpot].position, Quaternion.identity);
+            //mate.transform.parent = SpawnPoints[index];
             BossManager.Instance.UpdateBossChildren(mate);
         }
     }

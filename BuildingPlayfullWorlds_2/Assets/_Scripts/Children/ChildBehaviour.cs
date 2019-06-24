@@ -36,7 +36,10 @@ public class ChildBehaviour : MonoBehaviour
             followPlayer = true;
             animator.SetBool("ChildFollow", true);
             if (!GameManager.Children.ContainsKey(gameObject.name))
+            {
                 GameManager.Children.Add(gameObject.name, gameObject);
+                GameManager.CheckChildren();
+            }
             else
                 return;
         }

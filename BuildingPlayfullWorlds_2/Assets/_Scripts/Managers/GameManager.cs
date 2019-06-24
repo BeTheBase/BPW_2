@@ -40,10 +40,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public static void CheckChildren()
     {
         if (Children.Count >= 4)
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex +1);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void SetLives(int amount, bool remove)
